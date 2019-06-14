@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InkProjectile_Backup
+  m_Name: M_InkProjectile_Backup
   m_Shader: {fileID: 4800000, guid: 31dfab940b37f774e8ede0768f367596, type: 3}
   m_ShaderKeywords: MULTIPLY
   m_LightmapFlags: 4
