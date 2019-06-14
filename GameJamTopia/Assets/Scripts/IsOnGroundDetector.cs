@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class IsOnGroundDetector : MonoBehaviour
 {
-    void OnTriggerEnter()
+    void Update()
     {
-        PlayerController.instance.SetIsOnGround(true);
-    }
-
-    void OnTriggerExit()
-    {
-        PlayerController.instance.SetIsOnGround(false);
+        Debug.DrawLine(this.transform.position, this.transform.position + Vector3.down * 0.4f, Color.red);
+        if(Physics.Raycast(this.transform.position, Vector3.down, 0.4f))
+        {
+            PlayerController.instance.SetIsOnGround(true);
+        }
+        else
+        {
+            PlayerController.instance.SetIsOnGround(false);
+        }
     }
 }
