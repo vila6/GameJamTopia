@@ -12,6 +12,8 @@ public class Squid : MonoBehaviour
     public GameObject inkProjectile;
     public GameObject waterProjectile;
 
+    public GameObject prefabPickupInk;
+
     Transform target;
 
     private void Start()
@@ -23,7 +25,6 @@ public class Squid : MonoBehaviour
     {
         if ( shootCooldown <= 0 )
         {
-            // target = player
             Shoot();
             shootCooldown = shootMaxCooldown;
         }
@@ -33,19 +34,27 @@ public class Squid : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider collider)
+    {
+        if(collider.tag == "ProjectileInk")
+        {
+            Hurt(1);
+        }
+    }
+
     public void Shoot()
     {
-        //TODO lanzar proyectiles desde un shootpoint
         GameObject shot;
         if (inkShots > 0 && Random.Range(1, 2) == 1)
         {
-            shot = Instantiate(inkProjectile);
+            shot = Instantiate(inkProjectile, this.transform.position, Quaternion.identity);
             inkShots--;
         }
         else
         {
-            shot = Instantiate(waterProjectile);
+            shot = Instantiate(waterProjectile, this.transform.position, Quaternion.identity);
         }
+        shot.GetComponent<ProjectileController>().SetDirection(target.position);
         shot.transform.LookAt(target);
     }
 
@@ -60,7 +69,7 @@ public class Squid : MonoBehaviour
     // The enemy dies
     public void Die()
     {
-        //TODO spawnear pickup de tinta
+        Instantiate(prefabPickupInk, this.transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
