@@ -41,7 +41,7 @@ public class Squid : MonoBehaviour
         }
         else if(!backToPatrol)
         {
-            if((attackPosition - this.transform.position).magnitude > Time.deltaTime * speedAttacking + 1f)
+            if((attackPosition - this.transform.position).magnitude > Time.deltaTime * speedAttacking + 2f)
             {
                 this.transform.position += (attackPosition - this.transform.position).normalized * Time.deltaTime * speedAttacking;
             }
@@ -91,9 +91,9 @@ public class Squid : MonoBehaviour
 
     public void PlayerDetected(Vector3 position)
     {
-        if(!backToPatrol)
+        if(isPatrolling)
         {
-            beforeAttackPosition = position;
+            beforeAttackPosition = this.transform.position;
             isPatrolling = false;
             attackPosition = position;
         }        

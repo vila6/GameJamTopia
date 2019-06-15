@@ -11,7 +11,7 @@ public class PlayerDamageCollider : MonoBehaviour
     [Range(0,1000)]
     public int inkObtainedOnInkPickUp = 30;
     [Range(0,1000)]
-    public int inkLoseOnSepia = 20;
+    public int inkLoseOnSquid = 20;
 
 
     private PlayerController player;
@@ -34,8 +34,8 @@ public class PlayerDamageCollider : MonoBehaviour
             case "InkPickUp":
                 player.AddInk(inkObtainedOnInkPickUp);
                 break;
-            case "SepiaDamageCollider":
-                player.AddInk(-inkLoseOnSepia);
+            case "SquidAttack":
+                player.AddInk(-inkLoseOnSquid);
                 player.HitMovement(collider.transform.position);
                 break;
             default:
