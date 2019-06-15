@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce, jumpBrushForce;
 
     private Rigidbody playerRgbd;
+    private Vector3 extraMovement, originalExtraMovement;
 
     // Singleton
     public static PlayerController instance = null;
@@ -84,20 +85,37 @@ public class PlayerController : MonoBehaviour
 
         endVelocity += new Vector3(velocityX * speed, 0, 0);
 
+        // Salto
         if(jumpButtonPressed)
         {
             if(isOnGround)
             {
-                endVelocity = new Vector3(endVelocity.x, 0, endVelocity.z);
+                endVelocity = new Vector3(endVelocity.x, 0, 0);
                 endVelocity += new Vector3(0, jumpForce, 0);
                 jumpButtonPressed = false;
             }
             else if(isOnBrushLeft || isOnBrushRight)
             {
-                endVelocity = new Vector3(endVelocity.x, 0, endVelocity.z);
+                endVelocity = new Vector3(endVelocity.x, 0, 0);
                 endVelocity += new Vector3(0, jumpBrushForce, 0);
                 jumpButtonPressed = false;
             } 
+        }
+
+        // Movimiento extra (Por ejemplo al recibir daño)
+        if(extraMovement != Vector3.zero)
+        {
+            endVelocity += extraMovement;
+            extraMovement -= extraMovement * Time.deltaTime * 4f;
+            if((originalExtraMovement.x < 0 && (extraMovement.x > -0.1f || endVelocity.x > -0.1f)) || (originalExtraMovement.x > 0 && (extraMovement.x < 0.1f || endVelocity.x < 0.1f)))
+            {
+                extraMovement = Vector3.zero;
+            }
+        }
+
+        if(endVelocity.x > speed)
+        {
+            endVelocity = new Vector3(speed, endVelocity.y, 0);
         }
 
         playerRgbd.velocity = endVelocity;
@@ -154,5 +172,26 @@ public class PlayerController : MonoBehaviour
             inkCharge += value;
         }
         RefreshDiegetic();
+    }
+
+    /// <summary>
+    /// Pasar el punto desde el que recibe el golpe ()
+    /// </summary>
+    public void HitMovement(Vector3 origin)
+    {
+        // Eje X
+        if(origin.x > this.transform.position.x)
+        {
+            // Golpe de la izquierda
+            extraMovement = new Vector3(-1, 0, 0).normalized;
+        }
+        else
+        {
+            // Golpe de la derecha
+            extraMovement = new Vector3(1, 0, 0).normalized;
+        }
+
+        originalExtraMovement = extraMovement;
+        extraMovement *= 30f;
     }
 }
