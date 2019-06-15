@@ -13,6 +13,7 @@ public class PlayerDamageCollider : MonoBehaviour
     [Range(0,1000)]
     public int inkLoseOnSepia = 20;
 
+
     private PlayerController player;
 
     void Start()

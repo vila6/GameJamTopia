@@ -31,11 +31,15 @@ public class PlayerController : MonoBehaviour
 
     // Carga tinta
     [SerializeField]
+    [Range(0, 1000)]
+    public int maxInk = 200;
     private int inkCharge = 100;
     public TextMesh inkDiegeticDebug;
+    public GameObject inkContainer;
 
     // Animator
     public Animator anim;
+    public GameObject crabMesh;
 
     void Awake()
     {
@@ -77,6 +81,7 @@ public class PlayerController : MonoBehaviour
 
         // Comprobar colisiones laterales
         float velocityX = Input.GetAxis("Horizontal");
+
         if(collisionRight && velocityX > 0f)
         {
             velocityX = 0f;
@@ -125,8 +130,23 @@ public class PlayerController : MonoBehaviour
 
         playerRgbd.velocity = endVelocity;
 
+        // Animation stuff
         anim.SetFloat("hSpeed", Mathf.Abs(velocityX));
         anim.SetFloat("vSpeed", playerRgbd.velocity.y);
+        if(velocityX != 0)
+            anim.SetBool("goingRight", velocityX > 0);
+        anim.SetBool("hanging", isOnBrushLeft || isOnBrushRight);
+        // Flip character when player changes direction
+        Vector3 newScale = crabMesh.transform.localScale;
+        if (velocityX > 0)
+        {
+            newScale.x = 1;
+            crabMesh.transform.localScale = newScale;
+        }else if (velocityX < 0)
+        {
+            newScale.x = -1;
+            crabMesh.transform.localScale = newScale;
+        }
     }
 
     private void Shoot(){
@@ -151,7 +171,10 @@ public class PlayerController : MonoBehaviour
 
     private void RefreshDiegetic()
     {
-        inkDiegeticDebug.text = inkCharge.ToString(); // A SUSTITUIR POR EL SISTEMA DIEGETICO FINAL
+        Debug.Log("tinta " + inkCharge + " de " + maxInk);
+        Vector3 newInkScale = inkContainer.transform.localScale;
+        newInkScale.z = (float) inkCharge / maxInk;
+        inkContainer.transform.localScale = newInkScale;
     }
 
     public void SetIsOnGround(bool value)
@@ -193,12 +216,17 @@ public class PlayerController : MonoBehaviour
         {
             // Golpe de la izquierda
             extraMovement = new Vector3(-1, 0, 0).normalized;
+            anim.SetBool("goingRight", false);
         }
         else
         {
             // Golpe de la derecha
             extraMovement = new Vector3(1, 0, 0).normalized;
+
+            anim.SetBool("goingRight", true);
         }
+
+        anim.SetTrigger("knockback");
 
         originalExtraMovement = extraMovement;
         extraMovement *= 30f;
