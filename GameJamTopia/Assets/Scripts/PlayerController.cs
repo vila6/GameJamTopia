@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
         {
             isGoingRight = velocityX > 0;
             anim.SetBool("goingRight", isGoingRight);
-        }            
+        }
 
         anim.SetBool("hanging", isOnBrushLeft || isOnBrushRight);
         // Flip character when player changes direction
