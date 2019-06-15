@@ -67,6 +67,13 @@ public class PlayerController : MonoBehaviour
         {
             shootButtonPressed = true;
         }
+
+        //TODO ponerle cooldown o algo o detectar final de animación para no poder tener siempre el collider de daño delante
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Debug.Log("Atacabro");
+            anim.SetTrigger("attack");
+        }
     }
 
     void FixedUpdate()
@@ -133,8 +140,11 @@ public class PlayerController : MonoBehaviour
         // Animation stuff
         anim.SetFloat("hSpeed", Mathf.Abs(velocityX));
         anim.SetFloat("vSpeed", playerRgbd.velocity.y);
+
+        //TODO Aquí puedes ver hacia que lado está la animación
         if(velocityX != 0)
             anim.SetBool("goingRight", velocityX > 0);
+
         anim.SetBool("hanging", isOnBrushLeft || isOnBrushRight);
         // Flip character when player changes direction
         Vector3 newScale = crabMesh.transform.localScale;
