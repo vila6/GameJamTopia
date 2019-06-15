@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3778875977494323165}
   m_Layer: 0
   m_Name: P_InkProjectile
-  m_TagString: Projectile
+  m_TagString: ProjectileInk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4728,10 +4728,10 @@ SphereCollider:
   m_GameObject: {fileID: 167956952780071517}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.15, z: 0}
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8661381287910579921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4760,4 +4760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2dce60df0f0954daca930ed649cf8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: {x: 1, y: 0, z: 0}
   velocity: 10
+  delayUntilTriggerWorking: 0.15
