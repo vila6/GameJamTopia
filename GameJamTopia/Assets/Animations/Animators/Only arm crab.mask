@@ -8,4 +8,82 @@ AvatarMask:
   m_PrefabAsset: {fileID: 0}
   m_Name: Only arm crab
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-  m_Elements: []
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Bone001
+    m_Weight: 0
+  - m_Path: Bone001/Bone009
+    m_Weight: 0
+  - m_Path: Bone001/Bone009/Bone010
+    m_Weight: 0
+  - m_Path: Bone001/Bone009/Bone010/Bone011
+    m_Weight: 0
+  - m_Path: Bone001/Bone012
+    m_Weight: 0
+  - m_Path: Bone001/Bone012/Bone013
+    m_Weight: 0
+  - m_Path: Bone001/Bone012/Bone013/Bone014
+    m_Weight: 0
+  - m_Path: Bone001/Bone015
+    m_Weight: 0
+  - m_Path: Bone001/Bone015/Bone016
+    m_Weight: 0
+  - m_Path: Bone001/Bone015/Bone016/Bone017
+    m_Weight: 0
+  - m_Path: Bone001/Bone018
+    m_Weight: 0
+  - m_Path: Bone001/Bone018/Bone019
+    m_Weight: 0
+  - m_Path: Bone001/Bone018/Bone019/Bone020
+    m_Weight: 0
+  - m_Path: Bone001/Bone021
+    m_Weight: 0
+  - m_Path: Bone001/Bone021/Bone022
+    m_Weight: 0
+  - m_Path: Bone001/Bone021/Bone022/Bone023
+    m_Weight: 0
+  - m_Path: Bone001/Bone024
+    m_Weight: 0
+  - m_Path: Bone001/Bone024/Bone025
+    m_Weight: 0
+  - m_Path: Bone001/Bone024/Bone025/Bone026
+    m_Weight: 0
+  - m_Path: Bone001/Bone027
+    m_Weight: 1
+  - m_Path: Bone001/Bone027/Bone028
+    m_Weight: 1
+  - m_Path: Bone001/Bone027/Bone028/Bone029
+    m_Weight: 1
+  - m_Path: Bone001/Bone027/Bone028/Bone029/Bone030
+    m_Weight: 1
+  - m_Path: Bone001/Bone027/Bone028/Bone031
+    m_Weight: 1
+  - m_Path: Bone001/Bone027/Bone028/Bone031/Bone032
+    m_Weight: 1
+  - m_Path: Bone001/Bone033
+    m_Weight: 0
+  - m_Path: Bone001/Bone033/Bone034
+    m_Weight: 0
+  - m_Path: Bone001/Bone033/Bone034/Bone035
+    m_Weight: 0
+  - m_Path: Bone001/Bone033/Bone034/Bone035/Bone036
+    m_Weight: 0
+  - m_Path: Bone001/Bone033/Bone034/Bone037
+    m_Weight: 0
+  - m_Path: Bone001/Bone033/Bone034/Bone037/Bone038
+    m_Weight: 0
+  - m_Path: Cuerpo
+    m_Weight: 0
+  - m_Path: IK Chain001
+    m_Weight: 0
+  - m_Path: IK Chain002
+    m_Weight: 0
+  - m_Path: IK Chain003
+    m_Weight: 0
+  - m_Path: IK Chain004
+    m_Weight: 0
+  - m_Path: IK Chain005
+    m_Weight: 0
+  - m_Path: IK Chain006
+    m_Weight: 0
