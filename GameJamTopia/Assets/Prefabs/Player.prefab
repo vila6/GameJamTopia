@@ -68,7 +68,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849216249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2, y: 1, z: 0}
+  m_LocalPosition: {x: -2, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 818340943410342112}
@@ -252,7 +252,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 167956952780071517, guid: b905f1c11b01a2b4e8206bb25b13fd44,
     type: 3}
   shootPositionRight: {fileID: 818340943997434031}
-  shootPositionLeft: {fileID: 1724778597}
+  shootPositionLeft: {fileID: 849216250}
   shootDelay: 0.2
   inkNeededToShot: 10
   maxInk: 200
@@ -532,7 +532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818340943997434030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 1, z: 0}
+  m_LocalPosition: {x: 2, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 818340943410342112}
