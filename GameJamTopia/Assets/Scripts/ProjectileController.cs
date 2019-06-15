@@ -15,7 +15,7 @@ public class ProjectileController : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.tag != "Projectile")
+        if(collider.tag != "ProjectileInk" || collider.tag != "ProjectileBuble")
         {
             Destroy(this.gameObject);
         }
