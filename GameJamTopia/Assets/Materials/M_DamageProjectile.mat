@@ -40,7 +40,9 @@ Material:
     - _MULTIPLY: 1
     - _Particle: 0.13
     - _Scale: 1.14
-    - _Speed: 1.85
+    - _ScrollX: -1.5
+    - _ScrollY: 0
+    - _Speed: 0.9
     - _Stretch: 0.63
     m_Colors:
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}

@@ -38,10 +38,12 @@ Material:
     - _DistortScale: 0.265
     - _EdgeWidth: -2
     - _MULTIPLY: 1
-    - _Particle: -0.17
+    - _Particle: -0.2
     - _Scale: 1.14
-    - _Speed: 1.85
-    - _Stretch: 0.725
+    - _ScrollX: -1.5
+    - _ScrollY: 0
+    - _Speed: 0.9
+    - _Stretch: 0.59
     m_Colors:
     - _EdgeColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
     - _Tint: {r: 0, g: 0, b: 0, a: 1}

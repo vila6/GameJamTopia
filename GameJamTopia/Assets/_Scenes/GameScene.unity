@@ -467,5 +467,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 818340943410342118, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 167956952780071517, guid: b905f1c11b01a2b4e8206bb25b13fd44,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5163ab10c0ecc23499b41ddbd7fc881f, type: 3}

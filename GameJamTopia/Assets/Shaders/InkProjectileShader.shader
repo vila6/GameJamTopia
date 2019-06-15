@@ -24,7 +24,7 @@
 		Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" "PreviewType" = "Plane" }
 	    Blend One OneMinusSrcAlpha
 	    ColorMask RGB
-	    Cull Off Lighting Off ZWrite Off
+	    Cull Off Lighting On ZWrite Off
 	    BlendOp [_BlendOp]
 		
         Pass
@@ -81,8 +81,8 @@
 
 				float flowspeed = _Time.y * _Speed;
 
-				i.worldPos.y -= flowspeed;
-				i.worldPos.y *= _Stretch;
+				i.worldPos.x -= flowspeed;
+				i.worldPos.x *= _Stretch;
 
 				// normal distort triplanar for x, y, z sides
 				float xd = tex2D(_Distort, i.worldPos.zy * _DistortScale);
