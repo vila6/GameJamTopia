@@ -6,6 +6,7 @@ public class PlayerDamageCollider : MonoBehaviour
 {
     public int inkObtainedOnInkProjectile = 10;
     public int inkLoseOnBubleProjectile = 10;
+    public int inkObtainedOnInkPickUp = 30;
     void OnTriggerEnter(Collider collider)
     {
         switch(collider.tag)
@@ -15,6 +16,9 @@ public class PlayerDamageCollider : MonoBehaviour
                 break;
             case "ProjectileBuble":
                 PlayerController.instance.AddInk(-inkLoseOnBubleProjectile);
+                break;
+            case "InkPickUp":
+                PlayerController.instance.AddInk(inkObtainedOnInkPickUp);
                 break;
             default:
                 break;

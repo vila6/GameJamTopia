@@ -88,11 +88,13 @@ public class PlayerController : MonoBehaviour
         {
             if(isOnGround)
             {
+                endVelocity = new Vector3(endVelocity.x, 0, endVelocity.z);
                 endVelocity += new Vector3(0, jumpForce, 0);
                 jumpButtonPressed = false;
             }
             else if(isOnBrushLeft || isOnBrushRight)
             {
+                endVelocity = new Vector3(endVelocity.x, 0, endVelocity.z);
                 endVelocity += new Vector3(0, jumpBrushForce, 0);
                 jumpButtonPressed = false;
             } 

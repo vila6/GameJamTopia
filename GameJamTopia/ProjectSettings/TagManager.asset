@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ProjectileBuble
   - ProjectileInk
+  - InkPickUp
   layers:
   - Default
   - TransparentFX
