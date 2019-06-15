@@ -8,7 +8,7 @@ public class SkinCollisionDetector : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble")
+        if(collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble" && collider.tag != "SepiaDamageCollider") 
         {
             if(rightDetector)
             {
@@ -24,7 +24,7 @@ public class SkinCollisionDetector : MonoBehaviour
 
     void OnTriggerExit(Collider collider)
     {
-        if(collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble")
+        if(collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble" && collider.tag != "SepiaDamageCollider")
         {
             if(rightDetector)
             {
