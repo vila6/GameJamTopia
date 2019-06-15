@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
         //TODO Aquí puedes ver hacia que lado está la animación
         if(velocityX != 0)
             anim.SetBool("goingRight", velocityX > 0);
-
+        
         anim.SetBool("hanging", isOnBrushLeft || isOnBrushRight);
         // Flip character when player changes direction
         Vector3 newScale = crabMesh.transform.localScale;
