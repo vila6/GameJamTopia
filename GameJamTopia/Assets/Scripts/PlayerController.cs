@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     private int inkCharge = 100;
     public TextMesh inkDiegeticDebug;
 
+    // Animator
+    public Animator anim;
+
     void Awake()
     {
         if (instance == null)
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRgbd = this.GetComponent<Rigidbody>();
-
+        anim = GetComponentInChildren<Animator>();
         RefreshDiegetic();
     }
 
@@ -90,12 +93,14 @@ public class PlayerController : MonoBehaviour
         {
             if(isOnGround)
             {
+                anim.SetTrigger("jump");
                 endVelocity = new Vector3(endVelocity.x, 0, 0);
                 endVelocity += new Vector3(0, jumpForce, 0);
                 jumpButtonPressed = false;
             }
             else if(isOnBrushLeft || isOnBrushRight)
             {
+                anim.SetTrigger("jump");
                 endVelocity = new Vector3(endVelocity.x, 0, 0);
                 endVelocity += new Vector3(0, jumpBrushForce, 0);
                 jumpButtonPressed = false;
@@ -119,6 +124,9 @@ public class PlayerController : MonoBehaviour
         }
 
         playerRgbd.velocity = endVelocity;
+
+        anim.SetFloat("hSpeed", Mathf.Abs(velocityX));
+        anim.SetFloat("vSpeed", playerRgbd.velocity.y);
     }
 
     private void Shoot(){
@@ -149,6 +157,7 @@ public class PlayerController : MonoBehaviour
     public void SetIsOnGround(bool value)
     {
         isOnGround = value;
+        anim.SetBool("isGrounded", value);
     }
 
     public void SetIsOnBrushLeft(bool value)
