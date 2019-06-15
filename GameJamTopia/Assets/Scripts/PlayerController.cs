@@ -14,11 +14,16 @@ public class PlayerController : MonoBehaviour
 
     // Controles
     private bool jumpButtonPressed = false;
-    private bool isOnGround, isOnBrush;    
+    private bool isOnGround, isOnBrushLeft, isOnBrushRight;    
 
     // Skin
     [HideInInspector]
     public bool collisionRight, collisionLeft;
+
+    // Disparo
+    public GameObject projectilePrefab;
+    public Transform shootPosition;
+    private bool shootButtonPressed = false;
 
     void Awake()
     {
@@ -35,13 +40,24 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if((isOnGround || isOnBrush) && Input.GetButtonDown("Jump"))
+        if((isOnGround || isOnBrushLeft || isOnBrushRight) && Input.GetButtonDown("Jump"))
         {
             jumpButtonPressed = true;
+        }
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            shootButtonPressed = true;
         }
     }
 
     void FixedUpdate()
+    {
+        Movement();
+        Shoot();
+    }
+
+    private void Movement()
     {
         Vector3 endVelocity = new Vector3(0, playerRgbd.velocity.y, 0);
 
@@ -65,7 +81,7 @@ public class PlayerController : MonoBehaviour
                 endVelocity += new Vector3(0, jumpForce, 0);
                 jumpButtonPressed = false;
             }
-            else if(isOnBrush)
+            else if(isOnBrushLeft || isOnBrushRight)
             {
                 endVelocity += new Vector3(0, jumpBrushForce, 0);
                 jumpButtonPressed = false;
@@ -75,13 +91,26 @@ public class PlayerController : MonoBehaviour
         playerRgbd.velocity = endVelocity;
     }
 
+    private void Shoot(){
+        if(shootButtonPressed)
+        {
+            Instantiate(projectilePrefab, shootPosition.position, Quaternion.identity);
+            shootButtonPressed = false;
+        }
+    }
+
     public void SetIsOnGround(bool value)
     {
         isOnGround = value;
     }
 
-    public void SetIsOnBrush(bool value)
+    public void SetIsOnBrushLeft(bool value)
     {
-        isOnBrush = value;
+        isOnBrushLeft = value;
+    }
+
+    public void SetIsOnBrushRight(bool value)
+    {
+        isOnBrushRight = value;
     }
 }
