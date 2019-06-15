@@ -29,6 +29,7 @@ public class PlayerDamageCollider : MonoBehaviour
                 break;
             case "ProjectileBuble":
                 player.AddInk(-inkLoseOnBubleProjectile);
+                player.HitMovement(collider.transform.position);
                 break;
             case "InkPickUp":
                 player.AddInk(inkObtainedOnInkPickUp);

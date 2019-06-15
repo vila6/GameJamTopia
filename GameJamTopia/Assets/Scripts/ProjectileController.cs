@@ -26,7 +26,7 @@ public class ProjectileController : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(!collider.isTrigger && collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble")
+        if((!collider.isTrigger || (collider.isTrigger && collider.tag == "Player")) && collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble" && collider.tag != "Brush")
         {
             Destroy(this.gameObject);
         }

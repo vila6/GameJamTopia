@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 5238666114643840907}
   - component: {fileID: 4759849064145276913}
   - component: {fileID: 9123756138027603827}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ActionRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}

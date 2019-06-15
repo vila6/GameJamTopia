@@ -167,11 +167,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(endVelocity.x > speed)
-        {
-            endVelocity = new Vector3(speed, endVelocity.y, 0);
-        }
-
         playerRgbd.velocity = endVelocity;
 
         // Animation stuff
