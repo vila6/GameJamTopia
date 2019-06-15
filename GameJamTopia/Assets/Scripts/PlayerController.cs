@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     private void Shoot(){
         if(shootButtonPressed)
         {
-            Instantiate(projectilePrefab, shootPosition.position, Quaternion.identity);
+            Instantiate(projectilePrefab, shootPosition.position, shootPosition.rotation);
             shootButtonPressed = false;
         }
     }

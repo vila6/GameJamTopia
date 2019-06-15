@@ -6,27 +6,34 @@ public class SkinCollisionDetector : MonoBehaviour
 {
     public bool rightDetector;
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider collider)
     {
-        if(rightDetector)
+        if(collider.tag != "Projectile")
         {
-            PlayerController.instance.collisionRight = true;
+            if(rightDetector)
+            {
+                PlayerController.instance.collisionRight = true;
+            }
+            else
+            {
+                PlayerController.instance.collisionLeft = true;
+            }
         }
-        else
-        {
-            PlayerController.instance.collisionLeft = true;
-        }        
+                
     }
 
-    void OnTriggerExit()
+    void OnTriggerExit(Collider collider)
     {
-        if(rightDetector)
+        if(collider.tag != "Projectile")
         {
-            PlayerController.instance.collisionRight = false;
+            if(rightDetector)
+            {
+                PlayerController.instance.collisionRight = false;
+            }
+            else
+            {
+                PlayerController.instance.collisionLeft = false;
+            }
         }
-        else
-        {
-            PlayerController.instance.collisionLeft = false;
-        }        
     }
 }
