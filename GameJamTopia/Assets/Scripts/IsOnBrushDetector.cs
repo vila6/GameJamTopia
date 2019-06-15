@@ -9,7 +9,9 @@ public class IsOnBrushDetector : MonoBehaviour
     void Update()
     {
         Debug.DrawLine(this.transform.position, this.transform.position + Vector3.down * 0.4f, Color.blue);
-        if(Physics.Raycast(this.transform.position, Vector3.down, 0.2f))
+        Debug.DrawLine(this.transform.position - new Vector3(0.25f, 0, 0), this.transform.position - new Vector3(0.25f, 0, 0) + Vector3.down * 0.4f, Color.blue);
+        Debug.DrawLine(this.transform.position + new Vector3(0.25f, 0, 0), this.transform.position + new Vector3(0.25f, 0, 0) + Vector3.down * 0.4f, Color.blue);
+        if(Physics.Raycast(this.transform.position - new Vector3(0.25f, 0, 0), Vector3.down, 0.2f) || Physics.Raycast(this.transform.position + new Vector3(0.25f, 0, 0), Vector3.down, 0.2f))
         {
             if(rightSide)
                 PlayerController.instance.SetIsOnBrushRight(true);
