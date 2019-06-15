@@ -39,4 +39,15 @@ public class ProjectileController : MonoBehaviour
     {
         direction = (target - this.transform.position).normalized;
     }
+
+    public void SetDirectionRight()
+    {
+        direction = Vector3.right;
+    }
+
+    public void SetDirectionLeft()
+    {
+        direction = Vector3.left;
+    }
+
 }

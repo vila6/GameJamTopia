@@ -8,6 +8,7 @@ TagManager:
   - ProjectileInk
   - InkPickUp
   - SepiaDamageCollider
+  - BrushAttack
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour
     public float jumpForce, jumpBrushForce;
 
     private Rigidbody playerRgbd;
+
+    // Movimiento
     private Vector3 extraMovement, originalExtraMovement;
+    private bool isGoingRight = true;
 
     // Singleton
     public static PlayerController instance = null;
@@ -23,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     // Disparo
     public GameObject projectilePrefab;
-    public Transform shootPosition;
+    public Transform shootPositionRight, shootPositionLeft;
     private bool shootButtonPressed = false;
     private bool canShoot = true;
     public float shootDelay = 0.5f;
@@ -40,6 +43,13 @@ public class PlayerController : MonoBehaviour
     // Animator
     public Animator anim;
     public GameObject crabMesh;
+
+    // Ataque
+    public GameObject rightBrushAttackCollider, leftBrushAttackCollider;
+    private float attackMeleeDuration = 0.08f * 0.38f; // OJO Tiene q ser el tiempo exacto
+    public float attackMeleeExtraCooldown = 0.3f;
+    private bool onAttackDuration = false;
+    private bool onAttackCooldown = false;
 
     void Awake()
     {
@@ -68,12 +78,39 @@ public class PlayerController : MonoBehaviour
             shootButtonPressed = true;
         }
 
-        //TODO ponerle cooldown o algo o detectar final de animación para no poder tener siempre el collider de daño delante
-        if (Input.GetButtonDown("Fire2"))
+        // Animacion melee
+        if (!onAttackCooldown && Input.GetButtonDown("Fire2"))
         {
-            Debug.Log("Atacabro");
             anim.SetTrigger("attack");
+            onAttackDuration = true;
+            onAttackCooldown = true;
+            if(isGoingRight)
+            {
+                rightBrushAttackCollider.SetActive(true);
+            }
+            else
+            {
+                leftBrushAttackCollider.SetActive(true);
+            }
+            StartCoroutine(AttackBrushColliderDelay());            
         }
+    }
+
+    private IEnumerator AttackBrushColliderDelay()
+    {
+        yield return new WaitForSeconds(attackMeleeDuration);
+        if(isGoingRight)
+        {
+            rightBrushAttackCollider.SetActive(false);
+        }
+        else
+        {
+            leftBrushAttackCollider.SetActive(false);
+        }
+        onAttackDuration = false;
+        
+        yield return new WaitForSeconds(attackMeleeExtraCooldown);
+        onAttackCooldown = false;
     }
 
     void FixedUpdate()
@@ -141,28 +178,44 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("hSpeed", Mathf.Abs(velocityX));
         anim.SetFloat("vSpeed", playerRgbd.velocity.y);
 
-        //TODO Aquí puedes ver hacia que lado está la animación
-        if(velocityX != 0)
-            anim.SetBool("goingRight", velocityX > 0);
+        // Para saber si va hacia la derecha o hacia la izquierda
+        if(!onAttackDuration && velocityX != 0)
+        {
+            isGoingRight = velocityX > 0;
+            anim.SetBool("goingRight", isGoingRight);
+        }            
 
         anim.SetBool("hanging", isOnBrushLeft || isOnBrushRight);
         // Flip character when player changes direction
-        Vector3 newScale = crabMesh.transform.localScale;
-        if (velocityX > 0)
+        if(!onAttackDuration)
         {
-            newScale.x = 1;
-            crabMesh.transform.localScale = newScale;
-        }else if (velocityX < 0)
-        {
-            newScale.x = -1;
-            crabMesh.transform.localScale = newScale;
-        }
+            Vector3 newScale = crabMesh.transform.localScale;
+            if (velocityX > 0)
+            {
+                newScale.x = 1;
+                crabMesh.transform.localScale = newScale;
+            }else if (velocityX < 0)
+            {
+                newScale.x = -1;
+                crabMesh.transform.localScale = newScale;
+            }
+        }        
     }
 
     private void Shoot(){
         if(inkCharge >= inkNeededToShot && canShoot && shootButtonPressed)
         {
-            Instantiate(projectilePrefab, shootPosition.position, shootPosition.rotation);
+            if(isGoingRight)
+            {
+                GameObject projectile = Instantiate(projectilePrefab, shootPositionRight.position, Quaternion.identity) as GameObject;
+                projectile.GetComponent<ProjectileController>().SetDirectionRight();
+            }
+            else
+            {
+                GameObject projectile = Instantiate(projectilePrefab, shootPositionLeft.position, Quaternion.identity);
+                projectile.GetComponent<ProjectileController>().SetDirectionLeft();
+            }
+            
             shootButtonPressed = false;
             canShoot = false;
 
@@ -181,7 +234,6 @@ public class PlayerController : MonoBehaviour
 
     private void RefreshDiegetic()
     {
-        Debug.Log("tinta " + inkCharge + " de " + maxInk);
         Vector3 newInkScale = inkContainer.transform.localScale;
         newInkScale.z = (float) inkCharge / maxInk;
         inkContainer.transform.localScale = newInkScale;
