@@ -140,4 +140,17 @@ public class PlayerController : MonoBehaviour
     {
         isOnBrushRight = value;
     }
+
+    public void AddInk(int value)
+    {
+        if(inkCharge + value < 0)
+        {
+            inkCharge = 0;
+        }
+        else
+        {
+            inkCharge += value;
+        }
+        RefreshDiegetic();
+    }
 }
