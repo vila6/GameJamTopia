@@ -278,7 +278,7 @@ PrefabInstance:
     - target: {fileID: 167956952780071517, guid: b905f1c11b01a2b4e8206bb25b13fd44,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 167956952780071512, guid: b905f1c11b01a2b4e8206bb25b13fd44,
         type: 3}
@@ -335,6 +335,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 167956952780071519, guid: b905f1c11b01a2b4e8206bb25b13fd44,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 167956952780071519, guid: b905f1c11b01a2b4e8206bb25b13fd44,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 167956952780071519, guid: b905f1c11b01a2b4e8206bb25b13fd44,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 167956952780071519, guid: b905f1c11b01a2b4e8206bb25b13fd44,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b905f1c11b01a2b4e8206bb25b13fd44, type: 3}
 --- !u!1001 &4939545584450288588
@@ -352,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 5104963754491993544, guid: d1a69777eba4d1349bc66b4c78a47ca5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5104963754491993549, guid: d1a69777eba4d1349bc66b4c78a47ca5,
         type: 3}
