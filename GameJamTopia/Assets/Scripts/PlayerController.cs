@@ -24,6 +24,14 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform shootPosition;
     private bool shootButtonPressed = false;
+    private bool canShoot = true;
+    public float shootDelay = 0.5f;
+    public int inkNeededToShot = 10;
+
+    // Carga tinta
+    [SerializeField]
+    private int inkCharge = 100;
+    public TextMesh inkDiegeticDebug;
 
     void Awake()
     {
@@ -36,6 +44,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRgbd = this.GetComponent<Rigidbody>();
+
+        RefreshDiegetic();
     }
 
     void Update()
@@ -45,7 +55,7 @@ public class PlayerController : MonoBehaviour
             jumpButtonPressed = true;
         }
 
-        if(Input.GetButtonDown("Fire1"))
+        if(canShoot && Input.GetButton("Fire1"))
         {
             shootButtonPressed = true;
         }
@@ -92,11 +102,28 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Shoot(){
-        if(shootButtonPressed)
+        if(inkCharge >= inkNeededToShot && canShoot && shootButtonPressed)
         {
             Instantiate(projectilePrefab, shootPosition.position, shootPosition.rotation);
             shootButtonPressed = false;
+            canShoot = false;
+
+            inkCharge -= inkNeededToShot;
+            RefreshDiegetic();
+
+            StartCoroutine(DelayShoot());
         }
+    }
+
+    private IEnumerator DelayShoot()
+    {
+        yield return new WaitForSeconds(shootDelay);
+        canShoot = true;
+    }
+
+    private void RefreshDiegetic()
+    {
+        inkDiegeticDebug.text = inkCharge.ToString(); // A SUSTITUIR POR EL SISTEMA DIEGETICO FINAL
     }
 
     public void SetIsOnGround(bool value)

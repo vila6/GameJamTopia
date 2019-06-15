@@ -13,8 +13,11 @@ public class ProjectileController : MonoBehaviour
         Destroy(this.gameObject, 10f);
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider collider)
     {
-        Destroy(this.gameObject);
+        if(collider.tag != "Projectile")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
