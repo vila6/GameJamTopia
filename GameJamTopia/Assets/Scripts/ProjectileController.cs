@@ -26,7 +26,7 @@ public class ProjectileController : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble")
+        if(!collider.isTrigger && collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble")
         {
             Destroy(this.gameObject);
         }
@@ -34,7 +34,7 @@ public class ProjectileController : MonoBehaviour
 
     /// <summary>
     /// Pasar el punto hacia el que dispara
-    /// </sumary>
+    /// </summary>
     public void SetDirection(Vector3 target)
     {
         direction = (target - this.transform.position).normalized;

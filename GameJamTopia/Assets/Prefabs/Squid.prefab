@@ -114,4 +114,5 @@ MonoBehaviour:
     type: 3}
   waterProjectile: {fileID: 5104963754491993544, guid: d1a69777eba4d1349bc66b4c78a47ca5,
     type: 3}
-  prefabPickupInk: {fileID: 0}
+  prefabPickupInk: {fileID: 2489676990158735458, guid: ff90e0247a226db4e88ae28ec4ef0702,
+    type: 3}
