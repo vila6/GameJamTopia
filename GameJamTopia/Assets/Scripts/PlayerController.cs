@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Range(0, 1000)]
     public int maxInk = 180;
-    private int inkCharge = 0;
+    public int inkCharge = 0;
     public TextMesh inkDiegeticDebug;
     public GameObject inkContainer;
     public float timeToMarkInkAdded = 1.5f;
@@ -116,8 +116,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(GetInkRatio());
-
         if((isOnGround || isOnBrushLeft || isOnBrushRight) && Input.GetButtonDown("Jump"))
         {
             jumpButtonPressed = true;

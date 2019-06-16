@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneBad);
         }
-        else if(PlayerController.instance.GetInkRatio() > 0.7)
+        else if(PlayerController.instance.GetInkRatio() > 0.7f)
         {
             SceneManager.LoadScene(SceneMedium);
         }
