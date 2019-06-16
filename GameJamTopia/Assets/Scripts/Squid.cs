@@ -20,6 +20,7 @@ public class Squid : MonoBehaviour
     private Vector3 beforeAttackPosition;
     private bool backToPatrol = false;
     public GameObject squidModel;
+    public GameObject inkSplash;
 
     private void Start()
     {
@@ -95,6 +96,13 @@ public class Squid : MonoBehaviour
     // The enemy dies
     public void Die()
     {
+        //Camera Shake
+        PlayerController.instance.GetComponent<CameraShake>().shakeDuration = 0.25f;
+
+        //Spawn de particulas de tinta al morir
+        GameObject inkCone = Instantiate(inkSplash, this.transform.position, Quaternion.identity);
+        Destroy(inkCone, 2f);
+        
         Instantiate(prefabPickupInk, this.transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
