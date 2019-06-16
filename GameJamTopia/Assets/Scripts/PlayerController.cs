@@ -55,6 +55,12 @@ public class PlayerController : MonoBehaviour
     private bool onAttackDuration = false;
     private bool onAttackCooldown = false;
 
+    // Invulnerability
+    public float invulnerabilityTime = 1.5f;
+    public GameObject crabMeshPeroDeVerdad;
+    public bool isInvulnerable;
+    private float hitTime;
+
     void Awake()
     {
         if (instance == null)
@@ -97,6 +103,15 @@ public class PlayerController : MonoBehaviour
                 leftBrushAttackCollider.SetActive(true);
             }
             StartCoroutine(AttackBrushColliderDelay());            
+        }
+
+        // Change color to mark invulnerability
+        if (isInvulnerable)
+        {
+            float sinus = Mathf.Abs(Mathf.Sin((Time.time - hitTime) / invulnerabilityTime * 8f));
+            Color newColor = new Color(sinus, sinus, sinus);
+            Debug.Log("Color " + newColor.ToString());
+            crabMeshPeroDeVerdad.GetComponent<Renderer>().material.SetColor("_Color", newColor);
         }
     }
 
@@ -279,6 +294,17 @@ public class PlayerController : MonoBehaviour
         RefreshDiegetic();
     }
 
+    private IEnumerator HitInvulnerability()
+    {
+        isInvulnerable = true;
+        hitTime = Time.time;
+
+        yield return new WaitForSeconds(invulnerabilityTime);
+
+        crabMeshPeroDeVerdad.GetComponent<Renderer>().material.SetColor("_Color", new Color(1, 1, 1));
+        isInvulnerable = false;
+    }
+
     /// <summary>
     /// Pasar el punto desde el que recibe el golpe ()
     /// </summary>
@@ -300,7 +326,7 @@ public class PlayerController : MonoBehaviour
         }
 
         anim.SetTrigger("knockback");
-
+        StartCoroutine(HitInvulnerability());
         originalExtraMovement = extraMovement;
         extraMovement *= 30f;
     }

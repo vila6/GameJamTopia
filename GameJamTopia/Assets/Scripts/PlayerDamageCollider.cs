@@ -28,15 +28,21 @@ public class PlayerDamageCollider : MonoBehaviour
                player.AddInk(inkObtainedOnInkProjectile);
                 break;
             case "ProjectileBuble":
-                player.AddInk(-inkLoseOnBubleProjectile);
-                player.HitMovement(collider.transform.position);
+                if (!player.isInvulnerable)
+                {
+                    player.AddInk(-inkLoseOnBubleProjectile);
+                    player.HitMovement(collider.transform.position);
+                }
                 break;
             case "InkPickUp":
                 player.AddInk(inkObtainedOnInkPickUp);
                 break;
             case "SquidAttack":
-                player.AddInk(-inkLoseOnSquid);
-                player.HitMovement(collider.transform.position);
+                if (!player.isInvulnerable)
+                {
+                    player.AddInk(-inkLoseOnSquid);
+                    player.HitMovement(collider.transform.position);
+                }
                 break;
             default:
                 break;
