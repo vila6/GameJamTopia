@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Range(0, 1000)]
     public int maxInk = 200;
-    private int inkCharge = 100;
+    private int inkCharge = 0;
     public TextMesh inkDiegeticDebug;
     public GameObject inkContainer;
 
@@ -77,13 +77,13 @@ public class PlayerController : MonoBehaviour
             jumpButtonPressed = true;
         }
 
-        if(canShoot && Input.GetButton("Fire1"))
+        if(canShoot && Input.GetButtonDown("Fire2"))
         {
             shootButtonPressed = true;
         }
 
         // Animacion melee
-        if (!onAttackCooldown && Input.GetButtonDown("Fire2"))
+        if (!onAttackCooldown && Input.GetButtonDown("Fire1"))
         {
             anim.SetTrigger("attack");
             onAttackDuration = true;
@@ -230,6 +230,10 @@ public class PlayerController : MonoBehaviour
             RefreshDiegetic();
 
             StartCoroutine(DelayShoot());
+        }
+        else
+        {
+            shootButtonPressed = false;
         }
     }
 
