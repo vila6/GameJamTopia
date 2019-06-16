@@ -16,6 +16,8 @@ public class Boss : MonoBehaviour
     public AudioClip endMusic;
     private float originalVolumeMusic;
 
+    public GameObject[] toActive;
+
     void OnTriggerEnter(Collider collider)
     {
         if(isActive && collider.tag == "Player")
@@ -34,6 +36,10 @@ public class Boss : MonoBehaviour
     private IEnumerator StartBoss()
     {
         yield return new WaitForSeconds(1.5f);        
+        foreach(GameObject active in toActive)
+        {
+            active.SetActive(true);
+        }
         PlayerController.instance.GetComponent<CameraShake>().shakeDuration = 4f;
         bossRb.velocity = new Vector3(-3f, 0, 0);
         checkDistance = true;
