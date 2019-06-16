@@ -19,10 +19,12 @@ public class Squid : MonoBehaviour
     private Vector3 attackPosition;
     private Vector3 beforeAttackPosition;
     private bool backToPatrol = false;
+    public GameObject squidModel;
 
     private void Start()
     {
         targetPosition = myPatrol.RequestPatrolPoint();
+        CustomLookAt(targetPosition);
     }
 
     void FixedUpdate()
@@ -37,6 +39,7 @@ public class Squid : MonoBehaviour
             {
                 this.transform.position = targetPosition;
                 targetPosition = myPatrol.RequestPatrolPoint();
+                CustomLookAt(targetPosition);
             }
         }
         else if(!backToPatrol)
@@ -48,6 +51,7 @@ public class Squid : MonoBehaviour
             else
             {
                 backToPatrol = true;
+                CustomLookAt(beforeAttackPosition);
             }
         }
         else
@@ -61,9 +65,9 @@ public class Squid : MonoBehaviour
                 this.transform.position = beforeAttackPosition;
                 backToPatrol = false;
                 isPatrolling = true;
+                CustomLookAt(targetPosition);
             }
         }
-        
     }
 
     void OnTriggerEnter(Collider collider)
@@ -72,6 +76,12 @@ public class Squid : MonoBehaviour
         {
             Hurt(1);
         }
+    }
+
+    private void CustomLookAt(Vector3 target)
+    {
+        squidModel.transform.LookAt(target, Vector3.forward);
+        squidModel.transform.RotateAround(squidModel.transform.position, squidModel.transform.right, 90f);
     }
 
     // The enemy recieves an ammount of damage
@@ -96,6 +106,7 @@ public class Squid : MonoBehaviour
             beforeAttackPosition = this.transform.position;
             isPatrolling = false;
             attackPosition = position;
+            CustomLookAt(attackPosition);
         }        
     }
 }
