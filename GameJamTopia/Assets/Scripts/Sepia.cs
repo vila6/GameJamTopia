@@ -46,19 +46,17 @@ public class Sepia : MonoBehaviour
         {
             shot = Instantiate(inkProjectile, shootPoint.position, Quaternion.identity);
             inkShots--;
+
+            //Spawn de particulas de tinta en cono
+            Vector3 spawnParticlesPosition = new Vector3 (shootPoint.position.x, shootPoint.position.y, shootPoint.position.z);
+            GameObject inkCone = Instantiate(inkSpawn, spawnParticlesPosition, Quaternion.Euler(new Vector3 (0f,shot.GetComponent<ProjectileController>().direction.x * 90f, 0f)));
+            Destroy(inkCone, 1f);
         }
         else
         {
             shot = Instantiate(waterProjectile, shootPoint.position, Quaternion.identity);
         }
         shot.GetComponent<ProjectileController>().SetDirection(shootPoint.position + transform.right);
-
-        //Spawn de particulas de tinta en cono
-        Vector3 spawnParticlesPosition = new Vector3 (shootPoint.position.x, shootPoint.position.y, shootPoint.position.z);
-
-        GameObject inkCone = Instantiate(inkSpawn, spawnParticlesPosition, Quaternion.Euler(new Vector3 (0f,shot.GetComponent<ProjectileController>().direction.x * 90f, 0f)));
-
-        Destroy(inkCone, 1f);
     }
 
     // The enemy recieves an ammount of damage
