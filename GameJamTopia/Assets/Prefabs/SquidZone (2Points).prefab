@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 957393364066786649}
   - component: {fileID: 957393364066786650}
   m_Layer: 0
-  m_Name: SquidZone (2points)
+  m_Name: SquidZone (2Points)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,6 +373,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b855df5d57c1b634d81b2931ab4176ad, type: 2}
+    - target: {fileID: 13700000, guid: 9b713e110fdee3648b73c562513f7272, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3726a73b6108c4b4c862667654f121be, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b713e110fdee3648b73c562513f7272, type: 3}
 --- !u!1 &3845356971290101025 stripped
