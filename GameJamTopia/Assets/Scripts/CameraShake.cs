@@ -11,7 +11,7 @@ public class CameraShake : MonoBehaviour
 	
 	// Valores para el meneo de la camara
 	public float shakeAmount = 0.7f;
-	public float decreaseFactor = 1.0f;
+	public float decreaseFactor = 1f;
 	
 	Vector3 originalPos;
 	

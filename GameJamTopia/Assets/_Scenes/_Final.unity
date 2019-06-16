@@ -13776,6 +13776,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1150289742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 818340943439167747, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1047316750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1172519816
 GameObject:
   m_ObjectHideFlags: 0
@@ -15717,6 +15723,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1284615493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 818340943410342115, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1047316750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1284615497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284615493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b47365a43cb73e4f807ab17cb544228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 1150289742}
+  shakeDuration: 0
+  shakeAmount: 0.075
+  decreaseFactor: 1
 --- !u!4 &1340879242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3044438643854235297, guid: 103ff48e8f4efcf459ee4c7d2c403680,

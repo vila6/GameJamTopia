@@ -273,6 +273,10 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("shoot");
             if(isGoingRight)
             {
+
+                //Camera Shake
+                this.GetComponent<CameraShake>().shakeDuration = 0.5f;
+
                 //Spawn de particulas de tinta en cono
                 Vector3 spawnParticlesPosition = new Vector3 (shootPositionRight.position.x - 0.4f, shootPositionRight.position.y, shootPositionRight.position.z);
                 GameObject inkCone = Instantiate(vfxInkSplash, spawnParticlesPosition, Quaternion.Euler(new Vector3 (0f, 90f, 0f)));
@@ -364,6 +368,9 @@ public class PlayerController : MonoBehaviour
         StopCoroutine(InkAdded());
         isInvulnerable = true;
         hitTime = Time.time;
+
+        //Camera Shake
+        this.GetComponent<CameraShake>().shakeDuration = 0.5f;
 
         yield return new WaitForSeconds(invulnerabilityTime);
 
