@@ -6,6 +6,7 @@ public class Boss : MonoBehaviour
 {
     public Rigidbody bossRb;
     public Animator bossAnimator;
+    public GameObject victoryTrigger;
 
     private bool isActive = true;
     private bool checkDistance = false;
@@ -17,6 +18,7 @@ public class Boss : MonoBehaviour
             isActive = false;
             bossAnimator.enabled = true;
             StartCoroutine(StartBoss());
+            victoryTrigger.SetActive(true);
         }
     }
 
