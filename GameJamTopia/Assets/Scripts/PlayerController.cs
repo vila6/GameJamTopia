@@ -270,6 +270,7 @@ public class PlayerController : MonoBehaviour
     private void Shoot(){
         if(inkCharge >= inkNeededToShot && canShoot && shootButtonPressed)
         {
+            anim.SetTrigger("shoot");
             if(isGoingRight)
             {
                 //Spawn de particulas de tinta en cono

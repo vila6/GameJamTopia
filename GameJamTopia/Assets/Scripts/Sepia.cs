@@ -55,9 +55,9 @@ public class Sepia : MonoBehaviour
 
         //Spawn de particulas de tinta en cono
         Vector3 spawnParticlesPosition = new Vector3 (shootPoint.position.x, shootPoint.position.y, shootPoint.position.z);
-        Debug.Log ("Sepia rotation: " + this.transform.rotation.x);
-        Debug.Log ("Rotation spawn: " + new Vector3 (0f, 90f + this.transform.rotation.x, 0f));
-        GameObject inkCone = Instantiate(inkSpawn, spawnParticlesPosition, Quaternion.Euler(new Vector3 (0f, 90f + this.transform.rotation.x, 0f)));
+
+        GameObject inkCone = Instantiate(inkSpawn, spawnParticlesPosition, Quaternion.Euler(new Vector3 (0f,shot.GetComponent<ProjectileController>().direction.x * 90f, 0f)));
+
         Destroy(inkCone, 1f);
     }
 
