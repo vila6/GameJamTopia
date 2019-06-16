@@ -11820,6 +11820,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 203207140655622596, guid: ef5e0e1283769384bb5fabe1dca5f7ab,
+        type: 3}
+      propertyPath: inkSplash
+      value: 
+      objectReference: {fileID: 3543372718589033181, guid: acef049b4c447e54bb99ddce7ce902b9,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef5e0e1283769384bb5fabe1dca5f7ab, type: 3}
 --- !u!4 &1021161881 stripped
@@ -25469,6 +25475,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 0.99591315
       objectReference: {fileID: 0}
+    - target: {fileID: 203207140655622596, guid: ef5e0e1283769384bb5fabe1dca5f7ab,
+        type: 3}
+      propertyPath: inkSplash
+      value: 
+      objectReference: {fileID: 3543372718589033181, guid: acef049b4c447e54bb99ddce7ce902b9,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef5e0e1283769384bb5fabe1dca5f7ab, type: 3}
 --- !u!4 &6598455401170590929 stripped
@@ -25584,5 +25596,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 0.99591315
       objectReference: {fileID: 0}
+    - target: {fileID: 8604097922340217866, guid: 0700930c1c9d621428b0e79475d56ec5,
+        type: 3}
+      propertyPath: inkSplash
+      value: 
+      objectReference: {fileID: 3543372718589033181, guid: acef049b4c447e54bb99ddce7ce902b9,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0700930c1c9d621428b0e79475d56ec5, type: 3}
