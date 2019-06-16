@@ -486,6 +486,7 @@ public class PlayerController : MonoBehaviour
 
     public float GetInkRatio()
     {
-        return (float)inkCharge/(float)maxInk;
+        float inkRatio = (float)inkCharge / (float)maxInk;
+        return inkRatio;
     }
 }

@@ -45,7 +45,8 @@ public class Boss : MonoBehaviour
         checkDistance = true;
         yield return new WaitForSeconds(1.5f);
         musicAudioSource.Stop();
-        musicAudioSource.PlayOneShot(endMusic);
+        musicAudioSource.clip = endMusic;
+        musicAudioSource.Play();
         musicAudioSource.volume = originalVolumeMusic;
     }
 

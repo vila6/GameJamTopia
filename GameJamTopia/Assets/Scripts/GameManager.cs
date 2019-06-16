@@ -38,7 +38,9 @@ public class GameManager : MonoBehaviour
         // Detect pause input
         if (Input.GetButtonDown("Pause"))
         {
-            Pause();
+            if (Time.timeScale == 0)
+                Continue();
+            else Pause();
         }
     }
     public void Pause()
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour
         musicAudioSource.PlayOneShot(endGame);
 
 
-        uIGameOver.SetActive(true);
+        SceneManager.LoadScene(SceneBad);
     }
 
     public void _ReloadScene()
@@ -78,11 +80,11 @@ public class GameManager : MonoBehaviour
     public void Victory()
     {
         Time.timeScale = 1f;
-        if(PlayerController.instance.GetInkRatio() > 0.3f)
+        if(PlayerController.instance.GetInkRatio() < 0.3f)
         {
             SceneManager.LoadScene(SceneBad);
         }
-        else if(PlayerController.instance.GetInkRatio() > 0.7f)
+        else if(PlayerController.instance.GetInkRatio() < 0.6f)
         {
             SceneManager.LoadScene(SceneMedium);
         }
