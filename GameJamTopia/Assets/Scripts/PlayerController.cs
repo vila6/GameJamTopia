@@ -62,6 +62,12 @@ public class PlayerController : MonoBehaviour
     public GameObject crabMeshPeroDeVerdad;
     public bool isInvulnerable;
     private float hitTime;
+
+    //VFX
+    [Header("VFX")]
+    public GameObject vfxJump;
+    public GameObject vfxWalk;
+    public GameObject vfxInkSplash;
     
 
     void Awake()
@@ -156,12 +162,32 @@ public class PlayerController : MonoBehaviour
         Shoot();
     }
 
+    private IEnumerator ParticlesMovement(float valueFacing)
+    {
+        //Spawn de particulas de movimiento
+        Vector3 spawnParticlesPosition = new Vector3 (this.transform.position.x + valueFacing, this.transform.position.y - 0.5f, this.transform.position.z);
+        GameObject movementParticles = Instantiate(vfxWalk, spawnParticlesPosition, Quaternion.Euler(new Vector3(0f, 90f * valueFacing, 0f)));
+        Destroy(movementParticles, 0.5f);   
+
+        yield return new WaitForSeconds (1f);     
+    }
+
+
     private void Movement()
     {
         Vector3 endVelocity = new Vector3(0, playerRgbd.velocity.y, 0);
 
         // Comprobar colisiones laterales
         float velocityX = Input.GetAxis("Horizontal");
+
+        if (velocityX > 0 && isOnGround)
+        {
+            StartCoroutine(ParticlesMovement(-1f));
+        }
+        else if (velocityX < 0 && isOnGround)
+        {
+            StartCoroutine(ParticlesMovement(1f));
+        }
 
         if(collisionRight && velocityX > 0f)
         {
@@ -179,6 +205,11 @@ public class PlayerController : MonoBehaviour
         {
             if(isOnGround)
             {
+                //Spawn de particulas de salto
+                Vector3 spawnParticlesPosition = new Vector3 (this.transform.position.x, this.transform.position.y - 0.6f, this.transform.position.z);
+                GameObject jumpParticles = Instantiate(vfxJump, spawnParticlesPosition, Quaternion.identity);
+                Destroy(jumpParticles, 2f);
+
                 anim.SetTrigger("jump");
                 endVelocity = new Vector3(endVelocity.x, 0, 0);
                 endVelocity += new Vector3(0, jumpForce, 0);
@@ -241,11 +272,21 @@ public class PlayerController : MonoBehaviour
         {
             if(isGoingRight)
             {
+                //Spawn de particulas de tinta en cono
+                Vector3 spawnParticlesPosition = new Vector3 (shootPositionRight.position.x - 0.4f, shootPositionRight.position.y, shootPositionRight.position.z);
+                GameObject inkCone = Instantiate(vfxInkSplash, spawnParticlesPosition, Quaternion.Euler(new Vector3 (0f, 90f, 0f)));
+                Destroy(inkCone, 2f);
+
                 GameObject projectile = Instantiate(projectilePrefab, shootPositionRight.position, Quaternion.identity) as GameObject;
                 projectile.GetComponent<ProjectileController>().SetDirectionRight();
             }
             else
             {
+                //Spawn de particulas de tinta en cono
+                Vector3 spawnParticlesPosition = new Vector3 (shootPositionLeft.position.x + 0.4f, shootPositionLeft.position.y, shootPositionLeft.position.z);
+                GameObject inkCone = Instantiate(vfxInkSplash, spawnParticlesPosition, Quaternion.Euler(new Vector3 (0f, -90f, 0f)));
+                Destroy(inkCone, 2f);
+
                 GameObject projectile = Instantiate(projectilePrefab, shootPositionLeft.position, Quaternion.identity);
                 projectile.GetComponent<ProjectileController>().SetDirectionLeft();
             }

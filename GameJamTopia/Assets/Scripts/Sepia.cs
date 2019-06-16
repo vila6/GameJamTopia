@@ -10,6 +10,7 @@ public class Sepia : MonoBehaviour
 
     public GameObject inkProjectile;
     public GameObject waterProjectile;
+    public GameObject inkSpawn;
     public Transform shootPoint;
 
     private bool isActive = false;
@@ -51,6 +52,13 @@ public class Sepia : MonoBehaviour
             shot = Instantiate(waterProjectile, shootPoint.position, Quaternion.identity);
         }
         shot.GetComponent<ProjectileController>().SetDirection(shootPoint.position + transform.right);
+
+        //Spawn de particulas de tinta en cono
+        Vector3 spawnParticlesPosition = new Vector3 (shootPoint.position.x, shootPoint.position.y, shootPoint.position.z);
+        Debug.Log ("Sepia rotation: " + this.transform.rotation.x);
+        Debug.Log ("Rotation spawn: " + new Vector3 (0f, 90f + this.transform.rotation.x, 0f));
+        GameObject inkCone = Instantiate(inkSpawn, spawnParticlesPosition, Quaternion.Euler(new Vector3 (0f, 90f + this.transform.rotation.x, 0f)));
+        Destroy(inkCone, 1f);
     }
 
     // The enemy recieves an ammount of damage
