@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator StartBoss()
     {
-        yield return new WaitForSeconds(1.5f);        
+        yield return new WaitForSeconds(4.5f);        
         foreach(GameObject active in toActive)
         {
             active.SetActive(true);
