@@ -2931,6 +2931,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 3374a546a892a3540bb4aa42b03a0d5d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ea1f40e91fa83d42b3da7f26d97db81, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3374a546a892a3540bb4aa42b03a0d5d, type: 3}
 --- !u!1 &302117048
@@ -7716,17 +7720,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8222432499255257901, guid: 103ff48e8f4efcf459ee4c7d2c403680,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5204357898178948731, guid: 103ff48e8f4efcf459ee4c7d2c403680,
         type: 3}
       propertyPath: inkSpawn
       value: 
       objectReference: {fileID: 8905636497942641594, guid: aaa142e383bc5414bac445306da951d7,
         type: 3}
-    - target: {fileID: 8222432499255257901, guid: 103ff48e8f4efcf459ee4c7d2c403680,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2980590026920880418, guid: 103ff48e8f4efcf459ee4c7d2c403680,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -12871,6 +12875,46 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_RenderingPath
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_AllowMSAA
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: far clip plane
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.4224813
+      objectReference: {fileID: 0}
+    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.6780812
+      objectReference: {fileID: 0}
+    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_ForceIntoRT
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 818340943410342118, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
         type: 3}
       propertyPath: audioSteep.Array.size
@@ -12964,46 +13008,6 @@ PrefabInstance:
       propertyPath: audioPickUpInk
       value: 
       objectReference: {fileID: 8300000, guid: 01ce958876a0f054ea9496a769bb218f, type: 3}
-    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
-        type: 3}
-      propertyPath: m_RenderingPath
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
-        type: 3}
-      propertyPath: m_AllowMSAA
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
-        type: 3}
-      propertyPath: far clip plane
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.4224813
-      objectReference: {fileID: 0}
-    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.6780812
-      objectReference: {fileID: 0}
-    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.8867924
-      objectReference: {fileID: 0}
-    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
-        type: 3}
-      propertyPath: m_ForceIntoRT
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 503904883344022510, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
         type: 3}
       propertyPath: _fogColor.r
