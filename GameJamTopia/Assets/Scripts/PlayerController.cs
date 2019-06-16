@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     // Carga tinta
     [SerializeField]
     [Range(0, 1000)]
-    public int maxInk = 200;
+    public int maxInk = 180;
     private int inkCharge = 0;
     public TextMesh inkDiegeticDebug;
     public GameObject inkContainer;
@@ -482,5 +482,10 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(HitInvulnerability());
         originalExtraMovement = extraMovement;
         extraMovement *= 30f;
+    }
+
+    public float GetInkRatio()
+    {
+        return (float)inkCharge/(float)maxInk;
     }
 }
