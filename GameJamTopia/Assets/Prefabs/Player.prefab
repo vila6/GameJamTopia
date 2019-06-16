@@ -372,6 +372,9 @@ MonoBehaviour:
   rightBrushAttackCollider: {fileID: 686142052}
   leftBrushAttackCollider: {fileID: 1724778596}
   attackMeleeExtraCooldown: 0
+  invulnerabilityTime: 1.5
+  crabMeshPeroDeVerdad: {fileID: 2501749996574405988}
+  isInvulnerable: 0
 --- !u!1 &818340943429029056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,15 +1162,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d7700484fbd64c40b6eb454f1a65e23, type: 3}
---- !u!1 &2501749996574405978 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100062, guid: 6d7700484fbd64c40b6eb454f1a65e23,
-    type: 3}
-  m_PrefabInstance: {fileID: 2501749996574438276}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2501749996574042412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400040, guid: 6d7700484fbd64c40b6eb454f1a65e23,
+    type: 3}
+  m_PrefabInstance: {fileID: 2501749996574438276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2501749996574405988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100064, guid: 6d7700484fbd64c40b6eb454f1a65e23,
+    type: 3}
+  m_PrefabInstance: {fileID: 2501749996574438276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2501749996574405978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100062, guid: 6d7700484fbd64c40b6eb454f1a65e23,
     type: 3}
   m_PrefabInstance: {fileID: 2501749996574438276}
   m_PrefabAsset: {fileID: 0}
