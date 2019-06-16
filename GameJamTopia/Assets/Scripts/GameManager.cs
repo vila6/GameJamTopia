@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,15 @@ public class GameManager : MonoBehaviour
     #region Singleton
     public static GameManager instance = null;
 
+    // Game over
+    public GameObject uIGameOver;
+
+    // Victory
+    public GameObject uIVictory, uIVictory2;
+    private bool victoryTransition;
+    private float startTimeCount;
+    public float timeUntilTransition = 3f;
+
     private void Awake()
     {
         if (instance == null)
@@ -19,7 +29,7 @@ public class GameManager : MonoBehaviour
         else if (instance != this)
             Destroy(this.gameObject);
 
-        Object.DontDestroyOnLoad(this.gameObject);
+        //Object.DontDestroyOnLoad(this.gameObject); // Si activais esto me rompeis las referencias (al recargar la escena y morir peta)
     }
     #endregion
 
@@ -29,6 +39,14 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Pause"))
         {
             Pause();
+        }
+
+        if(victoryTransition && startTimeCount + timeUntilTransition <= Time.realtimeSinceStartup)
+        {
+            victoryTransition = false;
+            // TODO transicion a la victoria q corresponda en funcion de la tinta (yo haria 3, una mul mal otra normal y otra de puta madre, si da tiempo 4: mal, normal, bastante bien y de puta madre)
+            uIVictory2.SetActive(true);
+            uIVictory.SetActive(false);
         }
     }
     public void Pause()
@@ -48,6 +66,24 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Time.timeScale = 0f;
+        // TODO sonido y musica morirse (fijarse en los marios o algo)
+        uIGameOver.SetActive(true);
+    }
 
+    public void _ReloadScene()
+    {
+        Time.timeScale = 1f;
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    public void Victory()
+    {
+        Time.timeScale = 0f;
+        // TODO sonido y musica de la victoria y tal
+        uIVictory.SetActive(true);
+        startTimeCount = Time.realtimeSinceStartup;
+        victoryTransition = true;
     }
 }
