@@ -116,6 +116,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(GetInkRatio());
+
         if((isOnGround || isOnBrushLeft || isOnBrushRight) && Input.GetButtonDown("Jump"))
         {
             jumpButtonPressed = true;

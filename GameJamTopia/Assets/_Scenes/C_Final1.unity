@@ -236,8 +236,9 @@ MonoBehaviour:
   highScore: 0
   uIGameOver: {fileID: 0}
   uIVictory: {fileID: 0}
-  uIVictory2: {fileID: 0}
-  timeUntilTransition: 3
+  SceneBad: 
+  SceneMedium: 
+  SceneGood: 
   musicAudioSource: {fileID: 0}
   endGame: {fileID: 0}
 --- !u!4 &90679489
@@ -719,7 +720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 90679488}
         m_MethodName: _ReloadScene
         m_Mode: 1
         m_Arguments:
@@ -1925,7 +1926,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -9}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1927311552
