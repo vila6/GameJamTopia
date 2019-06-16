@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private int inkCharge = 0;
     public TextMesh inkDiegeticDebug;
     public GameObject inkContainer;
+    public float timeToMarkInkAdded = 1.5f;
+    private bool markingInkWon = false;
 
     // Animator
     public Animator anim;
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
     public GameObject crabMeshPeroDeVerdad;
     public bool isInvulnerable;
     private float hitTime;
+    
 
     void Awake()
     {
@@ -89,7 +92,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Animacion melee
-        if (!onAttackCooldown && Input.GetButtonDown("Fire1"))
+        if (!onAttackCooldown && !isOnBrushLeft && !isOnBrushRight && Input.GetButtonDown("Fire1"))
         {
             anim.SetTrigger("attack");
             onAttackDuration = true;
@@ -110,8 +113,17 @@ public class PlayerController : MonoBehaviour
         {
             float sinus = Mathf.Abs(Mathf.Sin((Time.time - hitTime) / invulnerabilityTime * 8f));
             Color newColor = new Color(sinus, sinus, sinus);
-            Debug.Log("Color " + newColor.ToString());
             crabMeshPeroDeVerdad.GetComponent<Renderer>().material.SetColor("_Color", newColor);
+            Color inkContainerColor = Color.Lerp(Color.black, Color.red, sinus * 2);
+            inkContainer.GetComponent<Renderer>().material.color = inkContainerColor;
+        }
+
+        // Mark ink added
+        if (markingInkWon)
+        {
+            float sinus = Mathf.Abs(Mathf.Sin((Time.time - hitTime) / timeToMarkInkAdded * 8f));
+            Color inkContainerColor = Color.Lerp(Color.black, Color.green, sinus * 2);
+            inkContainer.GetComponent<Renderer>().material.color = inkContainerColor;
         }
     }
 
@@ -291,27 +303,41 @@ public class PlayerController : MonoBehaviour
         {
             inkCharge += value;
         }
+        if (value > 0)
+            StartCoroutine(InkAdded());
         RefreshDiegetic();
+    }
+
+    public IEnumerator InkAdded()
+    {
+        markingInkWon = true;
+        yield return new WaitForSeconds(timeToMarkInkAdded);
+        markingInkWon = false;
+        inkContainer.GetComponent<Renderer>().material.color = Color.black;
+        float sinus = Mathf.Abs(Mathf.Sin((Time.time - hitTime) / invulnerabilityTime * 8f));
     }
 
     private IEnumerator HitInvulnerability()
     {
+        StopCoroutine(InkAdded());
         isInvulnerable = true;
         hitTime = Time.time;
 
         yield return new WaitForSeconds(invulnerabilityTime);
 
         crabMeshPeroDeVerdad.GetComponent<Renderer>().material.SetColor("_Color", new Color(1, 1, 1));
+        inkContainer.GetComponent<Renderer>().material.color = Color.black;
         isInvulnerable = false;
     }
 
     /// <summary>
     /// Pasar el punto desde el que recibe el golpe ()
     /// </summary>
-    public void HitMovement(Vector3 origin)
+    public void HitSquid(Vector3 origin)
     {
+        
         // Eje X
-        if(origin.x > this.transform.position.x)
+        if (origin.x > this.transform.position.x)
         {
             // Golpe de la izquierda
             extraMovement = new Vector3(-1, 0, 0).normalized;
@@ -323,7 +349,20 @@ public class PlayerController : MonoBehaviour
             extraMovement = new Vector3(1, 0, 0).normalized;
 
             anim.SetBool("goingRight", true);
+
         }
+
+
+        anim.SetTrigger("knockback");
+        StartCoroutine(HitInvulnerability());
+        originalExtraMovement = extraMovement;
+        extraMovement *= 30f;
+    }
+
+    public void HitBullet(GameObject origin)
+    {
+        extraMovement = origin.GetComponent<ProjectileController>().direction.normalized;
+        anim.SetBool("goingRight", false);
 
         anim.SetTrigger("knockback");
         StartCoroutine(HitInvulnerability());

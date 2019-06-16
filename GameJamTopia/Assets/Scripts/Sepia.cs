@@ -40,7 +40,8 @@ public class Sepia : MonoBehaviour
     public void Shoot()
     {
         GameObject shot;
-        if (inkShots > 0 && Random.Range(1, 2) == 1)
+        int randomNum = Random.Range(0, 3);
+        if (inkShots > 0 && randomNum == 2)
         {
             shot = Instantiate(inkProjectile, shootPoint.position, Quaternion.identity);
             inkShots--;

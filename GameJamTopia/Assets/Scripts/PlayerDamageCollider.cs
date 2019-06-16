@@ -31,7 +31,7 @@ public class PlayerDamageCollider : MonoBehaviour
                 if (!player.isInvulnerable)
                 {
                     player.AddInk(-inkLoseOnBubleProjectile);
-                    player.HitMovement(collider.transform.position);
+                    player.HitBullet(collider.gameObject);
                 }
                 break;
             case "InkPickUp":
@@ -41,7 +41,7 @@ public class PlayerDamageCollider : MonoBehaviour
                 if (!player.isInvulnerable)
                 {
                     player.AddInk(-inkLoseOnSquid);
-                    player.HitMovement(collider.transform.position);
+                    player.HitSquid(collider.transform.position);
                 }
                 break;
             default:
