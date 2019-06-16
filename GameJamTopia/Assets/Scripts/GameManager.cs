@@ -45,4 +45,9 @@ public class GameManager : MonoBehaviour
         state = GameState.PLAYING;
         Time.timeScale = 1;
     }
+
+    public void GameOver()
+    {
+
+    }
 }
