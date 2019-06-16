@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+
+    // Salto
     public float jumpForce, jumpBrushForce;
+    private float jumpImpulseDuration = 0.333f / 0.46f; // OJO Tiene q ser el tiempo exacto
+    private bool onJumpImpulseDuration = false;
 
     private Rigidbody playerRgbd;
 
@@ -46,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     // Ataque
     public GameObject rightBrushAttackCollider, leftBrushAttackCollider;
-    private float attackMeleeDuration = 0.08f * 0.38f; // OJO Tiene q ser el tiempo exacto
+    private float attackMeleeDuration = 0.133f / 0.38f; // OJO Tiene q ser el tiempo exacto
     public float attackMeleeExtraCooldown = 0.3f;
     private bool onAttackDuration = false;
     private bool onAttackCooldown = false;
@@ -113,6 +117,12 @@ public class PlayerController : MonoBehaviour
         onAttackCooldown = false;
     }
 
+    private IEnumerator JumpImpulseAnimationDelay()
+    {
+        yield return new WaitForSeconds(jumpImpulseDuration);
+        onJumpImpulseDuration = false;
+    }
+
     void FixedUpdate()
     {
         Movement();
@@ -153,6 +163,8 @@ public class PlayerController : MonoBehaviour
                 endVelocity = new Vector3(endVelocity.x, 0, 0);
                 endVelocity += new Vector3(0, jumpBrushForce, 0);
                 jumpButtonPressed = false;
+                onJumpImpulseDuration = true;
+                StartCoroutine(JumpImpulseAnimationDelay());
             } 
         }
 
@@ -174,7 +186,7 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("vSpeed", playerRgbd.velocity.y);
 
         // Para saber si va hacia la derecha o hacia la izquierda
-        if(!onAttackDuration && velocityX != 0)
+        if(!onAttackDuration && !onJumpImpulseDuration && velocityX != 0)
         {
             isGoingRight = velocityX > 0;
             anim.SetBool("goingRight", isGoingRight);
@@ -182,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("hanging", isOnBrushLeft || isOnBrushRight);
         // Flip character when player changes direction
-        if(!onAttackDuration)
+        if(!onAttackDuration && !onJumpImpulseDuration)
         {
             Vector3 newScale = crabMesh.transform.localScale;
             if (velocityX > 0)
