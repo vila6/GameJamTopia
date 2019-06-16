@@ -7,6 +7,9 @@ public class ProjectileController : MonoBehaviour
     public Vector3 direction;
     public float velocity = 10f;
     public float delayUntilTriggerWorking;
+    public bool isInk;
+    public GameObject particleDeathInk;
+    public GameObject particleDeathBubble;
 
     void Start()
     {
@@ -26,8 +29,16 @@ public class ProjectileController : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if((!collider.isTrigger || (collider.isTrigger && collider.tag == "Player")) && collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble" && collider.tag != "Brush")
+        if((!collider.isTrigger || (collider.isTrigger && collider.tag == "Player") || (collider.isTrigger && collider.tag == "SquidAttack")) && collider.tag != "ProjectileInk" && collider.tag != "ProjectileBuble" && collider.tag != "Brush" )
         {
+            if(isInk)
+            {
+                Destroy(GameObject.Instantiate(particleDeathInk, this.transform.position, Quaternion.identity), 0.5f);
+            }
+            else
+            {
+                Destroy(GameObject.Instantiate(particleDeathBubble, this.transform.position, Quaternion.identity), 0.5f);
+            }
             Destroy(this.gameObject);
         }
     }

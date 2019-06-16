@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     private float startTimeCount;
     public float timeUntilTransition = 3f;
 
+    public AudioSource musicAudioSource;
+    public AudioClip endGame;
+
     private void Awake()
     {
         if (instance == null)
@@ -67,7 +70,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0f;
-        // TODO sonido y musica morirse (fijarse en los marios o algo)
+        
+        musicAudioSource.Stop();
+        musicAudioSource.loop = false;
+        musicAudioSource.PlayOneShot(endGame);
+
+
         uIGameOver.SetActive(true);
     }
 

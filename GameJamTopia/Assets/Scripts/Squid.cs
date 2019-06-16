@@ -22,6 +22,11 @@ public class Squid : MonoBehaviour
     public GameObject squidModel;
     public GameObject inkSplash;
 
+    // Audio
+    public AudioSource myAudioSource;
+    public AudioClip[] audioHit;
+    public GameObject[] toDisable;
+
     private void Start()
     {
         targetPosition = myPatrol.RequestPatrolPoint();
@@ -88,6 +93,11 @@ public class Squid : MonoBehaviour
     // The enemy recieves an ammount of damage
     public void Hurt(int damage)
     {
+        if(damage > 0)
+        {
+            myAudioSource.PlayOneShot(audioHit[Random.Range(0, audioHit.Length)]);
+        }
+
         life -= damage;
         if (life <= 0)
             Die();
@@ -102,9 +112,17 @@ public class Squid : MonoBehaviour
         //Spawn de particulas de tinta al morir
         GameObject inkCone = Instantiate(inkSplash, this.transform.position, Quaternion.identity);
         Destroy(inkCone, 2f);
+
+        // Audio
         
         Instantiate(prefabPickupInk, this.transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        
+        foreach(GameObject go in toDisable)
+        {
+            go.SetActive(false);
+        }
+        
+        Destroy(gameObject, 2f);
     }
 
     public void PlayerDetected(Vector3 position)

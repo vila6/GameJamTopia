@@ -12,6 +12,7 @@ TagManager:
   - Brush
   - SquidAttack
   - UIGameOver
+  - Enemy
   layers:
   - Default
   - TransparentFX

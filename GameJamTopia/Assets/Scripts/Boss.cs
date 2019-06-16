@@ -11,12 +11,21 @@ public class Boss : MonoBehaviour
     private bool isActive = true;
     private bool checkDistance = false;
 
+    public AudioClip audioBoss;
+    public AudioSource musicAudioSource;
+    public AudioClip endMusic;
+    private float originalVolumeMusic;
+
     void OnTriggerEnter(Collider collider)
     {
         if(isActive && collider.tag == "Player")
         {
             isActive = false;
             bossAnimator.enabled = true;
+            this.GetComponent<AudioSource>().PlayOneShot(audioBoss);
+            PlayerController.instance.GetComponent<CameraShake>().shakeDuration = 1f;
+            originalVolumeMusic = musicAudioSource.volume;
+            musicAudioSource.volume = 0f;
             StartCoroutine(StartBoss());
             victoryTrigger.SetActive(true);
         }
@@ -24,9 +33,14 @@ public class Boss : MonoBehaviour
 
     private IEnumerator StartBoss()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.5f);        
+        PlayerController.instance.GetComponent<CameraShake>().shakeDuration = 4f;
         bossRb.velocity = new Vector3(-3f, 0, 0);
         checkDistance = true;
+        yield return new WaitForSeconds(1.5f);
+        musicAudioSource.Stop();
+        musicAudioSource.PlayOneShot(endMusic);
+        musicAudioSource.volume = originalVolumeMusic;
     }
 
     void FixedUpdate()

@@ -68,6 +68,19 @@ public class PlayerController : MonoBehaviour
     public GameObject vfxJump;
     public GameObject vfxWalk;
     public GameObject vfxInkSplash;
+
+    // Audios
+    [Header("Audio")]
+    private AudioSource myAudioSource;
+    private bool walkingAudio = false;
+    private bool wasOnGround = false;
+    public AudioClip audioJump;
+    public AudioClip audioJumpBrush;
+    public AudioClip[] audioSteep;
+    public AudioClip[] audioDamage;
+    public AudioClip audioLanding;
+    public AudioClip audioPickUpInk;
+    //public AudioClip audioShootInk;
     
 
     void Awake()
@@ -82,7 +95,23 @@ public class PlayerController : MonoBehaviour
     {
         playerRgbd = this.GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        myAudioSource = this.GetComponent<AudioSource>();
         RefreshDiegetic();
+
+        StartCoroutine(WalkAudio());
+    }
+
+    private IEnumerator WalkAudio()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if(walkingAudio)
+            {
+                myAudioSource.volume = 0.2f;
+                myAudioSource.PlayOneShot(audioSteep[Random.Range(0, audioSteep.Length)]);
+            }
+        }
     }
 
     void Update()
@@ -214,6 +243,9 @@ public class PlayerController : MonoBehaviour
                 endVelocity = new Vector3(endVelocity.x, 0, 0);
                 endVelocity += new Vector3(0, jumpForce, 0);
                 jumpButtonPressed = false;
+
+                myAudioSource.volume = 1f;
+                myAudioSource.PlayOneShot(audioJump);
             }
             else if(isOnBrushLeft || isOnBrushRight)
             {
@@ -223,6 +255,9 @@ public class PlayerController : MonoBehaviour
                 jumpButtonPressed = false;
                 onJumpImpulseDuration = true;
                 StartCoroutine(JumpImpulseAnimationDelay());
+
+                myAudioSource.volume = 0.5f;
+                myAudioSource.PlayOneShot(audioJumpBrush);
             } 
         }
 
@@ -259,10 +294,18 @@ public class PlayerController : MonoBehaviour
             {
                 newScale.x = 1;
                 crabMesh.transform.localScale = newScale;
+                
+                walkingAudio = true;
             }else if (velocityX < 0)
             {
                 newScale.x = -1;
                 crabMesh.transform.localScale = newScale;
+
+                walkingAudio = true;
+            }
+            else
+            {
+                walkingAudio = false;
             }
         }        
     }
@@ -271,6 +314,10 @@ public class PlayerController : MonoBehaviour
         if(inkCharge >= inkNeededToShot && canShoot && shootButtonPressed)
         {
             anim.SetTrigger("shoot");
+            
+            //myAudioSource.volume = 1f;
+            //myAudioSource.PlayOneShot(audioShootInk);
+
             if(isGoingRight)
             {
 
@@ -327,6 +374,16 @@ public class PlayerController : MonoBehaviour
     {
         isOnGround = value;
         anim.SetBool("isGrounded", value);
+        if(!isOnGround)
+        {
+            walkingAudio = false;
+        }
+        else if(isOnGround && !wasOnGround)
+        {
+            myAudioSource.volume = 0.5f;
+            myAudioSource.PlayOneShot(audioLanding);            
+        }
+        wasOnGround = value;
     }
 
     public void SetIsOnBrushLeft(bool value)
@@ -352,10 +409,19 @@ public class PlayerController : MonoBehaviour
         if (value > 0)
             StartCoroutine(InkAdded());
         RefreshDiegetic();
+
+        if(value < 0)
+        {
+            myAudioSource.volume = 1f;
+            myAudioSource.PlayOneShot(audioDamage[Random.Range(0, audioDamage.Length)]);
+        }
     }
 
     public IEnumerator InkAdded()
     {
+        myAudioSource.volume = 1f;
+        myAudioSource.PlayOneShot(audioPickUpInk);
+        
         markingInkWon = true;
         yield return new WaitForSeconds(timeToMarkInkAdded);
         markingInkWon = false;
@@ -400,7 +466,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("goingRight", true);
 
         }
-
 
         anim.SetTrigger("knockback");
         StartCoroutine(HitInvulnerability());
