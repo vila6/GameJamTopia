@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 818340943410342115, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 818340943410342112, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -248,6 +253,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 818340943439167746, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: far clip plane
+      value: 48.6
+      objectReference: {fileID: 0}
     - target: {fileID: 818340943410342118, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
         type: 3}
       propertyPath: vfxJump
@@ -270,6 +280,66 @@ PrefabInstance:
         type: 3}
       propertyPath: inkNeededToShot
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 503904883344022510, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 503904883344022510, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _fogColor.r
+      value: 0.43454072
+      objectReference: {fileID: 0}
+    - target: {fileID: 503904883344022510, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _fogColor.g
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 503904883344022510, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _fogColor.b
+      value: 0.84351104
+      objectReference: {fileID: 0}
+    - target: {fileID: 503904883344022510, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _depthStart
+      value: 42.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 503904883344022510, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _depthDistance
+      value: 8.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651239139859104176, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651239139859104176, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _pixelOffset
+      value: 0.0055
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651239139859104176, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _noiseScale
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651239139859104176, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _noiseFrecuency
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651239139859104176, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _noiseSpeed
+      value: 9.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651239139859104176, guid: 5163ab10c0ecc23499b41ddbd7fc881f,
+        type: 3}
+      propertyPath: _depthDistance
+      value: 4.47
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5163ab10c0ecc23499b41ddbd7fc881f, type: 3}
