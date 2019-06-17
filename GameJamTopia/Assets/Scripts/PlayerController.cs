@@ -116,32 +116,35 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if((isOnGround || isOnBrushLeft || isOnBrushRight) && Input.GetButtonDown("Jump"))
+        if(Time.timeScale > 0)
         {
-            jumpButtonPressed = true;
-        }
-
-        if(canShoot && Input.GetButtonDown("Fire2"))
-        {
-            shootButtonPressed = true;
-        }
-
-        // Animacion melee
-        if (!onAttackCooldown && !isOnBrushLeft && !isOnBrushRight && Input.GetButtonDown("Fire1"))
-        {
-            anim.SetTrigger("attack");
-            onAttackDuration = true;
-            onAttackCooldown = true;
-            if(isGoingRight)
+            if((isOnGround || isOnBrushLeft || isOnBrushRight) && Input.GetButtonDown("Jump"))
             {
-                rightBrushAttackCollider.SetActive(true);
+                jumpButtonPressed = true;
             }
-            else
+
+            if(canShoot && Input.GetButtonDown("Fire2"))
             {
-                leftBrushAttackCollider.SetActive(true);
+                shootButtonPressed = true;
             }
-            StartCoroutine(AttackBrushColliderDelay());            
-        }
+
+            // Animacion melee
+            if (!onAttackCooldown && !isOnBrushLeft && !isOnBrushRight && Input.GetButtonDown("Fire1"))
+            {
+                anim.SetTrigger("attack");
+                onAttackDuration = true;
+                onAttackCooldown = true;
+                if(isGoingRight)
+                {
+                    rightBrushAttackCollider.SetActive(true);
+                }
+                else
+                {
+                    leftBrushAttackCollider.SetActive(true);
+                }
+                StartCoroutine(AttackBrushColliderDelay());            
+            }
+        }        
 
         // Change color to mark invulnerability
         if (isInvulnerable)

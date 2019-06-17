@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public string SceneBad, SceneMedium, SceneGood;
     public AudioSource musicAudioSource;
     public AudioClip endGame;
+    public GameObject uiPause;
 
     private void Awake()
     {
@@ -39,23 +40,32 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Pause"))
         {
             if (Time.timeScale == 0)
-                Continue();
+                _Continue();
             else Pause();
         }
     }
     public void Pause()
     {
-        Debug.Log("Game paused");
         state = GameState.PAUSED;
+
+        uiPause.SetActive(true);
+
         Time.timeScale = 0;
     }
 
     // End pause
-    public void Continue()
+    public void _Continue()
     {
-        Debug.Log("Game despaused (?)");
         state = GameState.PLAYING;
+
+        uiPause.SetActive(false);
+
         Time.timeScale = 1;
+    }
+
+    public void _ExitGame()
+    {
+        Application.Quit();
     }
 
     public void GameOver()
@@ -65,7 +75,6 @@ public class GameManager : MonoBehaviour
         musicAudioSource.Stop();
         musicAudioSource.loop = false;
         musicAudioSource.PlayOneShot(endGame);
-
 
         SceneManager.LoadScene(SceneBad);
     }
