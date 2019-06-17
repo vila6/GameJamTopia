@@ -10,11 +10,14 @@ public class CinematicControl : MonoBehaviour
     int actualState;
     float startTransitionTime;
 
+    public AudioClip startAudio, midAudio, endAudio;
+    public AudioSource myAudioSource;
 
     private void Start()
     {
         transform.position = states[0].position;
         actualState = 0;
+        myAudioSource.PlayOneShot(startAudio);
     }
     
     private void Update()
@@ -44,10 +47,26 @@ public class CinematicControl : MonoBehaviour
         canContinue = false;
         transition = true;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1); 
+
+        // Audios
+        if(actualState == 0)
+        {
+            myAudioSource.Stop();
+            myAudioSource.PlayOneShot(midAudio);
+        }
+        else if(actualState == 1)
+        {
+            myAudioSource.Stop();
+            myAudioSource.PlayOneShot(endAudio);
+        }  
+
+        yield return new WaitForSeconds(1);
 
         canContinue = true;
         transition = false;
-        actualState++;
+        actualState++;    
+
+        
     }
 }
